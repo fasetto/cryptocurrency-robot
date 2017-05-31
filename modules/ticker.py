@@ -1,11 +1,8 @@
 
-import os
 from enum import Enum, unique
-import json
 import requests
 
 BASE_URL = "https://min-api.cryptocompare.com/data/generateAvg?fsym=%s&tsym=%s&markets=%s"
-# https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&markets=Cexio"
 
 @unique
 class Markets(Enum):
