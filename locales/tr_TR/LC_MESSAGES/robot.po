@@ -1,0 +1,38 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2017 fasetto
+# SERKAN BIRCAN <serkan@siniradam.net>, 2017.
+#
+
+#: robot.py:28
+msgid "%s, choose your language."
+msgstr "%s, dilini seç."
+
+msgid "Perfect, your language is set: %s"
+msgstr "Harika, dil şuna değiştirildi: %s"
+
+msgid "Choose a pair."
+msgstr "Bir parite seçin."
+
+msgid "Pair: %s"
+msgstr "Parite: %s"
+
+msgid "Now choose a market."
+msgstr "Şimdi borsa seçin."
+
+msgid ""
+"Price: {} \n"
+"Open: {}\n"
+"24h High: {}\n"
+"24h Low: {}\n"
+"24h Volume: {}\n"
+"24h Change: {}"
+msgstr ""
+"Fiyat: {} \n"
+"Açılış: {}\n"
+"24h En yüksek: {}\n"
+"24h En düşük: {}\n"
+"24h Hacim: {}\n"
+"24h Değişim: {}"
+
+msgid "Unsupported pair."
+msgstr "Desteklenmeyen parite."
