@@ -28,14 +28,18 @@ class Ticker:
         request_url = BASE_URL % (couple[0], couple[1], market.value)
         result = self.__api_call(request_url)
 
-        result = {
-            'price': result['RAW']['PRICE'],
-            'volume24h': result['RAW']['VOLUME24HOUR'],
-            'open24h': result['RAW']['OPEN24HOUR'],
-            'high24h': result['RAW']['HIGH24HOUR'],
-            'low24h': result['RAW']['LOW24HOUR'],
-            'change24h': result['RAW']['CHANGE24HOUR']
-        }
+        try:
+            result = {
+                'price': result['RAW']['PRICE'],
+                'volume24h': result['RAW']['VOLUME24HOUR'],
+                'open24h': result['RAW']['OPEN24HOUR'],
+                'high24h': result['RAW']['HIGH24HOUR'],
+                'low24h': result['RAW']['LOW24HOUR'],
+                'change24h': result['RAW']['CHANGE24HOUR']
+            }
+        except KeyError:
+            return None
+
         return result
 
     def __api_call(self, uri):
