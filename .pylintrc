@@ -1,0 +1,12 @@
+[MESSAGES CONTROL]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+disable=C0102,C0111,C0103,C0301,C0303,C0304,C0321,C0325,C0326,C0413,W0511,W0122,W0123,W0301,W0603,W0613,W0621,R1705

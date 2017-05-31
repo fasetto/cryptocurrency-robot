@@ -21,11 +21,10 @@ LANGUAGE = range(1)
 
 def start(bot, update):
     user = update.message.from_user
-    chat_id = update.message.chat_id
     reply_keyboard = [['🇬🇧 English', '🇹🇷 Türkçe']]
 
     update.message.reply_text(
-        _("%s, choose your language." % (user.first_name), chat_id),
+        _("%s, choose your language.", user.id) % user.first_name,
         reply_markup=ReplyKeyboardMarkup(reply_keyboard, resize_keyboard=True, one_time_keyboard=True)
     )
 
@@ -37,12 +36,11 @@ def _(message, user_id):
 
     if lang == 'ENG':
         return message
-    
+
     return translate(message)
 
 def language(bot, update):
     user = update.message.from_user
-    chat_id = update.message.chat_id
     lang = 'ENG' if 'English' in update.message.text else 'TR'
 
     config.write(user.id, language=lang, user=user.first_name)
@@ -51,7 +49,7 @@ def language(bot, update):
 
 
     update.message.reply_text(
-        _("Perfect, your language is set: %s" % (update.message.text), chat_id),
+        _("Perfect, your language is set: %s", user.id) % update.message.text,
         reply_markup=ReplyKeyboardRemove()
     )
 
