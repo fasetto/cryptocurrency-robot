@@ -20,24 +20,26 @@ class Markets(Enum):
 class Ticker:
     '''Ticker api for some popular markets.'''
     def __init__(self):
-        self.market = None
-        self.couple = None
+        self._market = None
+        self._couple = None
 
     @property
     def pair(self):
-        return self.couple
+        return self._couple
     
     @pair.setter
     def pair(self, value):
-        self.couple = value
+        self._couple = value
+        return self._couple
 
     @property
     def market(self):
-        return self.market
+        return self._market
     
     @market.setter
     def market(self, value):
-        self.market = value
+        self._market = value
+        return self._market
 
     def ticker(self):
         couple = self.couple.split('/')
