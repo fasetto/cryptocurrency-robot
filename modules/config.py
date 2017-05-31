@@ -11,8 +11,14 @@ config.read(path)
 
 token = config['telegram']['token']
 
-def language(chat_id):
-    return config[str(chat_id)]['language']
+def language(user_id):
+    lang = None
+    try:
+        lang = config[str(user_id)]['language']
+    except KeyError:
+        lang = 'ENG'
+    
+    return lang
 
 def write(section, **kwargs):
     if str(section) not in config.sections():
