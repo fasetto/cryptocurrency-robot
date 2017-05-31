@@ -21,11 +21,28 @@ class Markets(Enum):
 class Ticker:
     '''Ticker api for some popular markets.'''
     def __init__(self):
-        pass
+        self.market = None
+        self.couple = None
 
-    def ticker(self, market, couple):
-        couple = couple.split('/')
-        request_url = BASE_URL % (couple[0], couple[1], market.value)
+    @property
+    def pair(self):
+        return self.couple
+    
+    @pair.setter
+    def pair(self, value):
+        self.couple = value
+
+    @property
+    def market(self):
+        return self.market
+    
+    @market.setter
+    def market(self, value):
+        self.market = value
+
+    def ticker(self):
+        couple = self.couple.split('/')
+        request_url = BASE_URL % (couple[0], couple[1], self.market.value)
         result = self.__api_call(request_url)
 
         try:
