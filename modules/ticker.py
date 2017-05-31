@@ -46,12 +46,12 @@ class Ticker:
 
         try:
             result = {
-                'price': result['RAW']['PRICE'],
-                'volume24h': result['RAW']['VOLUME24HOUR'],
-                'open24h': result['RAW']['OPEN24HOUR'],
-                'high24h': result['RAW']['HIGH24HOUR'],
-                'low24h': result['RAW']['LOW24HOUR'],
-                'change24h': result['RAW']['CHANGE24HOUR']
+                'price': result['DISPLAY']['PRICE'],
+                'volume24h': result['DISPLAY']['VOLUME24HOUR'],
+                'open24h': result['DISPLAY']['OPEN24HOUR'],
+                'high24h': result['DISPLAY']['HIGH24HOUR'],
+                'low24h': result['DISPLAY']['LOW24HOUR'],
+                'change24h': result['DISPLAY']['CHANGE24HOUR']
             }
         except KeyError:
             return None
