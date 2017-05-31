@@ -21,6 +21,7 @@ LANGUAGE = range(1)
 
 def start(bot, update):
     user = update.message.from_user
+    chat_id = update.message.chat_id
     reply_keyboard = [['🇬🇧 English', '🇹🇷 Türkçe']]
 
     update.message.reply_text(
@@ -30,22 +31,21 @@ def start(bot, update):
 
     return LANGUAGE
 
-def _(message, chat_id):
-    _ = t.gettext
-    lang = config.language(chat_id)
+def _(message, user_id):
+    translate = t.gettext
+    lang = config.language(user_id)
 
     if lang == 'ENG':
         return message
     
-    return _(message)
+    return translate(message)
 
 def language(bot, update):
     user = update.message.from_user
     chat_id = update.message.chat_id
-
     lang = 'ENG' if 'English' in update.message.text else 'TR'
 
-    config.write(chat_id, language=lang, user=user.first_name)
+    config.write(user.id, language=lang, user=user.first_name)
 
     logger.info("Language of %s: %s", user.first_name, update.message.text)
 
