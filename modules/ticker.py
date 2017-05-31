@@ -42,7 +42,7 @@ class Ticker:
         return self._market
 
     def ticker(self):
-        couple = self.couple.split('/')
+        couple = self._couple.split('/')
         request_url = BASE_URL % (couple[0], couple[1], self.market.value)
         result = self.__api_call(request_url)
 
