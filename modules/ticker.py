@@ -9,6 +9,8 @@ BASE_URL = "https://min-api.cryptocompare.com/data/generateAvg?fsym=%s&tsym=%s&m
 
 @unique
 class Markets(Enum):
+    Paribu = 'Paribu'
+    Koinim = 'Koinim'
     Cexio = 'Cexio'
     Bitstamp = 'Bitstamp'
     Bitfinex = 'Bitfinex'
