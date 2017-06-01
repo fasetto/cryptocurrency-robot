@@ -198,7 +198,7 @@ def notify(bot, update, args, job_queue, chat_data):
             'price': float(args[3])
         }
 
-        job = job_queue.run_repeating(notify_callback, 5.0, context=arguments)
+        job = job_queue.run_repeating(notify_callback, 60.0, context=arguments)
         chat_data['job'] = job
 
         update.message.reply_text(_('I will notify you when the price reach at the level you want ! (:', user.id))
