@@ -4,8 +4,7 @@ from configparser import ConfigParser
 
 config = ConfigParser()
 
-path = os.path.abspath(__file__ + r'\..\..\config.yml')
-user_path = os.path.abspath(__file__ + r'\..\..\user.yml')
+path = os.path.join(os.path.dirname(__file__), r'../config.yml')
 
 config.read(path)
 
