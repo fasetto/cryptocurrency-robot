@@ -3,6 +3,7 @@ from enum import Enum, unique
 import requests
 
 BASE_URL = "https://min-api.cryptocompare.com/data/generateAvg?fsym=%s&tsym=%s&markets=%s"
+KOIMIM_URL = "https://koinim.com/ticker/"
 
 @unique
 class Markets(Enum):
@@ -47,6 +48,17 @@ class Ticker:
         result = self.__api_call(request_url)
 
         try:
+            if self.market == Markets.Koinim:
+                result = {
+                    'price': "₺ {:,.2f}".format(result['last_order']),
+                    'volume24h': "Ƀ {:,.2f}".format(result['volume']),
+                    'open24h': 'NaN',
+                    'high24h': "₺ {:,.2f}".format(result['high']),
+                    'low24h': "₺ {:,.2f}".format(result['low']),
+                    'change24h': "% {:.2f}".format(result['change_rate'])
+                }
+                return result
+
             result = {
                 'price': result['DISPLAY']['PRICE'],
                 'volume24h': result['DISPLAY']['VOLUME24HOUR'],
@@ -61,5 +73,9 @@ class Ticker:
         return result
 
     def __api_call(self, uri):
+        if self.market == Markets.Koinim:
+            result = requests.get(KOIMIM_URL).json()
+            return result
+
         result = requests.get(uri).json()
         return result
