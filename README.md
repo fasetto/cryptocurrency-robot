@@ -14,7 +14,8 @@ To get this bot click [here][bot-url].
 
 ## Notify command
 
-Usage: `/notify <market> <pair> <condition> <price>`
+Usage for set alarm: `/notify <market> <pair> <condition> <price>` </br>
+Usage for remove alarm: `/notify remove`
 
 ### params
 - **market** -> Like *Paribu*, *Koinim*, *Poloniex*, *Cexio*, ..etc can be all supported markets.
