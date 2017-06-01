@@ -24,7 +24,7 @@ Usage: `/notify <market> <pair> <condition> <price>`
 ### example
 `/notify Paribu BTC/TRY < 8500`
 
-## Screenshuts
+## Screenshots
 
 ![screenshut1](screenshuts/bot.PNG)
 
