@@ -26,7 +26,7 @@ Usage: `/notify <market> <pair> <condition> <price>`
 
 ## Screenshuts
 
-![screenshut1](screenshuts/bot.png)
+![screenshut1](screenshuts/bot.PNG)
 
 ![screenshut2](screenshuts/bot2.png)
 
