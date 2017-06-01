@@ -135,14 +135,23 @@ def _(message, user_id):
 
 @run_async
 def notify_callback(bot, job):
+    user_id = job.context['user_id']
     market = job.context['market']
     pair = job.context['pair']
     condition = job.context['condition']
     condition_price = float(job.context['price'])
 
-    tickr.market = Markets[market]
-    tickr.pair = pair
-    last_price = float(tickr.ticker()['price'].split(' ')[1].replace(',', '.'))
+    try:
+        tickr.market = Markets[market]
+        tickr.pair = pair
+        last_price = float(tickr.ticker()['price'].split(' ')[1].replace(',', '.'))
+    except:
+        job.schedule_removal()
+        chat_data = job.context['chat_data']
+        del chat_data['job']
+
+        bot.send_message(job.context['chat_id'], text=_('Incorrect parameters.', user_id))
+        return
 
     if condition == '>':
         if last_price > condition_price:
@@ -178,6 +187,7 @@ def notify(bot, update, args, job_queue, chat_data):
             return
 
         arguments = {
+            'user_id': user.id,
             'chat_id': chat_id, 
             'chat_data': chat_data,
             'market': args[0], 
