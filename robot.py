@@ -21,7 +21,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger('CryptoCurrency Bot')
 logger.addHandler(logging.FileHandler('.log', encoding='utf-8'))
 
-JOBS = []
 LANGUAGE = 0
 PAIR, MARKET = range(2)
 
@@ -138,8 +137,8 @@ def _(message, user_id):
 def notify_callback(bot, job):
     market = job.context['market']
     pair = job.context['pair']
-    condition = job.context['condition'].split('=')[0]
-    condition_price = float(job.context['condition'].split('=')[1])
+    condition = job.context['condition']
+    condition_price = float(job.context['price'])
 
     tickr.market = Markets[market]
     tickr.pair = pair
@@ -147,41 +146,54 @@ def notify_callback(bot, job):
 
     if condition == '>':
         if last_price > condition_price:
+            job.schedule_removal()
+            chat_data = job.context['chat_data']
+            del chat_data['job']
+
             bot.send_message(job.context['chat_id'], text='Alarm: Last price: %s' % last_price)
     elif condition == '<':
         if last_price < condition_price:
+            job.schedule_removal()
+            chat_data = job.context['chat_data']
+            del chat_data['job']
+
             bot.send_message(job.context['chat_id'], text='Alarm: Last price: %s' % last_price)
 
 def notify(bot, update, args, job_queue, chat_data):
+    user = update.message.from_user
     chat_id = update.message.chat_id
 
-    if args[0] == 'pop':
-        try:
-            _job = JOBS[-1]
-        except IndexError:
-            update.message.reply_text('You have no active alarm.')
+    try:
+
+        if args[0] == 'remove':
+            if 'job' not in chat_data:
+                update.reply_text('You have no active alarm yet.')
+                return
+        
+            _job = chat_data['job']
+            _job.schedule_removal()
+            del chat_data['job']
+
+            update.message.reply_text(_('Alarm successfully removed !', user.id))
             return
 
-        _job.schedule_removal()
-        JOBS.pop()
-        update.message.reply_text('Alarm successfully removed !')
-        return
-
-    try:
         arguments = {
             'chat_id': chat_id, 
+            'chat_data': chat_data,
             'market': args[0], 
             'pair': args[1],
-            'condition': args[2]
+            'condition': args[2],
+            'price': float(args[3])
         }
 
-        job = job_queue.run_repeating(notify_callback, 10.0, context=arguments)
-        JOBS.append(job)
+        job = job_queue.run_repeating(notify_callback, 60.0, context=arguments)
+        chat_data['job'] = job
 
-        update.message.reply_text('I will notify you ! (:')
+        update.message.reply_text(_('I will notify you when the price reach at the level you want. ! (:', user.id))
 
     except (IndexError, ValueError):
-        update.message.reply_text('Usage: /notify market pair >=value')
+        update.message.reply_text(_('Usage: /notify market pair > price\n' 
+                                    'Example: /notify Poloniex BTC/USD < 2290', user.id))
 
 def cancel(bot, update):
     user = update.message.from_user
