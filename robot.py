@@ -195,6 +195,18 @@ def notify(bot, update, args, job_queue, chat_data):
         update.message.reply_text(_('Usage: /notify market pair > price\n' 
                                     'Example: /notify Poloniex BTC/USD < 2290', user.id))
 
+def help(bot, update):
+     user = update.message.from_user
+     update.message.reply_text(
+         _(
+             '/start - init bot'
+             '/ticker - ticker'
+             '/notify - to receive notifications from market'
+             '/cancel - cancel current operation'
+             '/help - see all available commands', user.id
+         )
+     )
+
 def cancel(bot, update):
     user = update.message.from_user
     logger.info("User %s canceled the conversation.", user.first_name)
@@ -234,6 +246,7 @@ def main():
 
     dp.add_handler(conv_handler)
     dp.add_handler(ticker_handler)
+    dp.add_handler('help', help)
     dp.add_handler(CommandHandler("notify", notify,
                                   pass_args=True,
                                   pass_job_queue=True,
