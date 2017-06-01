@@ -50,3 +50,16 @@ msgstr ""
 
 msgid "Unsupported pair."
 msgstr "Desteklenmeyen parite."
+
+msgid "Alarm successfully removed !"
+msgstr "Alarm kaldırıldı !"
+
+msgid "I will notify you when the price reach at the level you want. ! (:"
+msgstr "Fiyat istediğin düzeye gelince sana haber vereceğim ! (:"
+
+msgid ""
+"Usage: /notify market pair > price\n"
+"Example: /notify Poloniex BTC/USD < 2290"
+msgstr ""
+"Kullanım /notify market pair > fiyat\n"
+"Örnek: /notify Poloniex BTC/USD < 2290"
