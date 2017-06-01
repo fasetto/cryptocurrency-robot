@@ -79,3 +79,6 @@ msgstr ""
 
 msgid "Notify Error: Incorrect parameters."
 msgstr "Bildirim hatası: Geçersiz parametreler."
+
+msgid "Removed keyboard."
+msgstr "Klavye kaldırıldı."
