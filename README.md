@@ -26,8 +26,8 @@ Usage: `/notify <market> <pair> <condition> <price>`
 
 ## Screenshots
 
-![screenshut1](screenshuts/bot.PNG)
+![screenshot1](screenshots/bot.PNG)
 
-![screenshut2](screenshuts/bot2.png)
+![screenshot2](screenshots/bot2.png)
 
 [bot-url]: <https://telegram.me/cryptocurrencyrobot>
