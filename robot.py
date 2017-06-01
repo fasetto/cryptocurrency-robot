@@ -246,7 +246,7 @@ def main():
 
     dp.add_handler(conv_handler)
     dp.add_handler(ticker_handler)
-    dp.add_handler('help', help)
+    dp.add_handler(CommandHandler('help', help))
     dp.add_handler(CommandHandler("notify", notify,
                                   pass_args=True,
                                   pass_job_queue=True,
