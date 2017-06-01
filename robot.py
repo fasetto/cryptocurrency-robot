@@ -189,7 +189,7 @@ def notify(bot, update, args, job_queue, chat_data):
         job = job_queue.run_repeating(notify_callback, 60.0, context=arguments)
         chat_data['job'] = job
 
-        update.message.reply_text(_('I will notify you when the price reach at the level you want. ! (:', user.id))
+        update.message.reply_text(_('I will notify you when the price reach at the level you want ! (:', user.id))
 
     except (IndexError, ValueError):
         update.message.reply_text(_('Usage: /notify market pair > price\n' 
@@ -199,10 +199,10 @@ def help(bot, update):
      user = update.message.from_user
      update.message.reply_text(
          _(
-             '/start - init bot'
-             '/ticker - ticker'
-             '/notify - to receive notifications from market'
-             '/cancel - cancel current operation'
+             '/start - init bot\n'
+             '/ticker - ticker\n'
+             '/notify - to receive notifications from market\n'
+             '/cancel - cancel current operation\n'
              '/help - see all available commands', user.id
          )
      )
