@@ -76,3 +76,6 @@ msgstr ""
 "/notify - borsadan bildirim almak için\n"
 "/cancel - geçerli komuttan çıkmak için\n"
 "/help - kullanılabilir komut listesi"
+
+msgid "Notify Error: Incorrect parameters."
+msgstr "Bildirim hatası: Geçersiz parametreler."
