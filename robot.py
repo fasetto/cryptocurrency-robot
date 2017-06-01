@@ -16,7 +16,7 @@ t = gettext.translation('robot', localedir='./locales', languages=['tr_TR'])
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     datefmt='%m-%d-%Y %I:%M:%S %p',
-                    level=logging.INFO)
+                    level=logging.WARN)
 
 logger = logging.getLogger('CryptoCurrency Bot')
 logger.addHandler(logging.FileHandler('.log', encoding='utf-8'))
@@ -223,10 +223,7 @@ def cancel(bot, update):
     user = update.message.from_user
     logger.info("User %s canceled the conversation.", user.first_name)
 
-    update.message.reply_text(
-        _("", user.id),
-        reply_markup=ReplyKeyboardRemove()
-    )
+    update.message.reply_text(_('Removed keyboard.', user.id), reply_markup=ReplyKeyboardRemove())
     return -1
 
 def error(bot, update, error):
