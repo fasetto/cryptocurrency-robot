@@ -26,7 +26,7 @@ Usage: `/notify <market> <pair> <condition> <price>`
 
 ## Screenshots
 
-![screenshot1](screenshots/bot.PNG)
+![screenshot1](screenshots/bot.png)
 
 ![screenshot2](screenshots/bot2.png)
 
