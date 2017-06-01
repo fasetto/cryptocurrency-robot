@@ -57,7 +57,8 @@ def language(bot, update):
 
 def ticker(bot, update):
     user = update.message.from_user
-    reply_keyboard = [['BTC/USD', 'BTC/EUR'],
+    reply_keyboard = [['BTC/TRY'],
+                      ['BTC/USD', 'BTC/EUR'],
                       ['ETH/USD', 'ETH/BTC'],
                       ['ETC/USD', 'ETC/BTC'],
                       ['LTC/USD', 'LTC/BTC'],
@@ -106,6 +107,7 @@ def market(bot, update):
 
     if market_ticker is None:
         update.message.reply_text(_("Unsupported pair.", user.id))
+        return
 
     update.message.reply_text(
         _("@ {}\n"
@@ -150,7 +152,7 @@ def notify_callback(bot, job):
         chat_data = job.context['chat_data']
         del chat_data['job']
 
-        bot.send_message(job.context['chat_id'], text=_('Incorrect parameters.', user_id))
+        bot.send_message(job.context['chat_id'], text=_('Notify Error: Incorrect parameters.', user_id))
         return
 
     if condition == '>':
@@ -248,7 +250,7 @@ def main():
         entry_points=[CommandHandler('ticker', ticker)],
 
         states={
-            PAIR: [RegexHandler('^(BTC/USD|BTC/EUR|ETH/USD|ETH/BTC|ETC/USD|ETC/BTC|LTC/USD|LTC/BTC|XRP/USD|XRP/BTC|XMR/USD|XMR/BTC)', pair)],
+            PAIR: [RegexHandler('^(BTC/TRY|BTC/USD|BTC/EUR|ETH/USD|ETH/BTC|ETC/USD|ETC/BTC|LTC/USD|LTC/BTC|XRP/USD|XRP/BTC|XMR/USD|XMR/BTC)', pair)],
             MARKET: [RegexHandler('^(⬅️ Back|Paribu|Koinim|Bitstamp|Bitfinex|Cexio|Poloniex|Coinbase|Kraken|BTCE|OKCoin)', market)]
         },
         fallbacks=[CommandHandler('cancel', cancel)]
