@@ -141,12 +141,12 @@ def notify_callback(bot, job):
     market = job.context['market']
     pair = job.context['pair']
     condition = job.context['condition']
-    condition_price = float(job.context['price'])
+    condition_price = job.context['price']
 
     try:
         tickr.market = Markets[market]
         tickr.pair = pair
-        last_price = float(tickr.ticker()['price'].split(' ')[1].replace(',', '.'))
+        last_price = float(tickr.ticker()['price'].split(' ')[1].replace(',', ''))
     except:
         job.schedule_removal()
         chat_data = job.context['chat_data']
@@ -198,7 +198,7 @@ def notify(bot, update, args, job_queue, chat_data):
             'price': float(args[3])
         }
 
-        job = job_queue.run_repeating(notify_callback, 60.0, context=arguments)
+        job = job_queue.run_repeating(notify_callback, 5.0, context=arguments)
         chat_data['job'] = job
 
         update.message.reply_text(_('I will notify you when the price reach at the level you want ! (:', user.id))
