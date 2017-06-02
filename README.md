@@ -2,7 +2,7 @@
 # CryptoCurrency Bot
 
 Provides informations about *cryptocurrencies*.
-To get this bot click [here][bot-url].
+To get to this bot click [telegram.me/cryptocurrencyrobot][bot-url].
 
 ## Commands
 
