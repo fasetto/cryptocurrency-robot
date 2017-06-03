@@ -28,8 +28,8 @@ Usage for remove alarm: `/notify remove`
 `/notify Paribu BTC/TRY < 8500`
 
 ## Donations 
-If you're feeling generous, you can donate
-- *via* **Bitcoin** to [3NW9LnnYmk5icRNe6j9nVPKCXoQsCnKSPP][btc-addr] 
+If you're feeling generous, you can donate </br>
+[![Bitcoin Donate Button](https://www.drupal.org/files/project-images/bitcoindonate.png)][btc-addr]
 
 ## Screenshots
 
