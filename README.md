@@ -1,8 +1,10 @@
 
 # CryptoCurrency Bot
 
-Provides informations about *cryptocurrencies*.
+Provides informations about *cryptocurrencies*. </br>
 To get to this bot click [telegram.me/cryptocurrencyrobot][bot-url].
+
+If you like this bot, please put :star: :star: :star: :star: :star: here [telegram.me/storebot?start=cryptocurrencyrobot](https://telegram.me/storebot?start=cryptocurrencyrobot)
 
 ## Commands
 
@@ -25,6 +27,10 @@ Usage for remove alarm: `/notify remove`
 ### example
 `/notify Paribu BTC/TRY < 8500`
 
+## Donations 
+If you're feeling generous, you can donate
+- *via* **Bitcoin** to [3NW9LnnYmk5icRNe6j9nVPKCXoQsCnKSPP][btc-addr] 
+
 ## Screenshots
 
 ![screenshot1](screenshots/bot.png)
@@ -32,3 +38,4 @@ Usage for remove alarm: `/notify remove`
 ![screenshot2](screenshots/bot2.png)
 
 [bot-url]: <https://telegram.me/cryptocurrencyrobot>
+[btc-addr]: <https://blockchain.info/address/3NW9LnnYmk5icRNe6j9nVPKCXoQsCnKSPP>
