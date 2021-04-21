@@ -5,7 +5,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-BASE_URL = "https://min-api.cryptocompare.com/data/generateAvg?fsym=%s&tsym=%s&markets=%s"
+BASE_URL = "https://min-api.cryptocompare.com/data/generateAvg?fsym=%s&tsym=%s&e=%s"
 KOIMIM_URL = "https://koinim.com/ticker/"
 
 @unique
