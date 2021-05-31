@@ -5,9 +5,10 @@ import gettext
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (
     Updater, CommandHandler, Job,
-    RegexHandler, ConversationHandler
+    RegexHandler, ConversationHandler,CallbackContext
 )
 from telegram.ext.dispatcher import run_async
+from telegram import Update
 
 from modules import config
 from modules.ticker import Ticker, Markets
@@ -26,7 +27,7 @@ PAIR, MARKET = range(2)
 
 tickr = Ticker()
 
-def start(bot, update):
+def start(update: Update, context: CallbackContext):
     user = update.message.from_user
     reply_keyboard = [['🇬🇧 English', '🇹🇷 Türkçe']]
 
@@ -39,7 +40,7 @@ def start(bot, update):
 
     return LANGUAGE
 
-def language(bot, update):
+def language(update: Update, context: CallbackContext):
     user = update.message.from_user
     lang = 'ENG' if 'English' in update.message.text else 'TR'
 
@@ -55,7 +56,7 @@ def language(bot, update):
 
     return -1
 
-def ticker(bot, update):
+def ticker(update: Update, context: CallbackContext):
     user = update.message.from_user
     reply_keyboard = [['BTC/TRY'],
                       ['BTC/USD', 'BTC/EUR'],
@@ -74,7 +75,7 @@ def ticker(bot, update):
 
     return PAIR
 
-def pair(bot, update):
+def pair(update: Update, context: CallbackContext):
     user = update.message.from_user
     couple = update.message.text
     reply_keyboard = [['⬅️ Back'],
@@ -95,7 +96,7 @@ def pair(bot, update):
 
     return MARKET
 
-def market(bot, update):
+def market(update: Update, context: CallbackContext):
     user = update.message.from_user
     market = update.message.text
 
@@ -207,7 +208,7 @@ def notify(bot, update, args, job_queue, chat_data):
         update.message.reply_text(_('Usage: /notify market pair > price\n' 
                                     'Example: /notify Poloniex BTC/USD < 2290', user.id))
 
-def help(bot, update):
+def help(update: Update, context: CallbackContext):
      user = update.message.from_user
      update.message.reply_text(
          _(
@@ -219,7 +220,7 @@ def help(bot, update):
          )
      )
 
-def cancel(bot, update):
+def cancel(update: Update, context: CallbackContext):
     user = update.message.from_user
     logger.info("User %s canceled the conversation.", user.first_name)
 
@@ -230,7 +231,7 @@ def error(bot, update, error):
     logger.warning('Update "%s" caused error "%s"', update, error)
 
 def main():
-    updater = Updater(config.token)
+    updater = Updater(config.token, use_context=True)
 
     dp = updater.dispatcher
 
